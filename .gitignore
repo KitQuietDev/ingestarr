@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Env
+.env
+.env.local
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (runtime state, not code)
+data/state/
+data/logs/
+data/review/
+data/input/processed/
+
+# Docker override (local run params)
+docker-compose.override.yml
+
+# Architecture plan (local reference, not public)
+PLAN.md

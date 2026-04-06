@@ -1,0 +1,21 @@
+services:
+  ingestarr:
+    build: .
+    container_name: ingestarr
+    restart: unless-stopped
+
+    volumes:
+      - ./data/input:/data/input
+      - ./data/state:/data/state
+      - ./data/logs:/data/logs
+      - ./data/review:/data/review
+
+    env_file:
+      - .env
+
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
