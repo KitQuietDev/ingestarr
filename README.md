@@ -77,3 +77,7 @@ docker exec ingestarr python -m ingestarr process mylist.csv --dry-run
 ## Status
 
 Early. It works, but it hasn't been battle-tested yet. Expect rough edges.
+
+## License
+
+GPL-3.0. See [LICENSE](LICENSE).
