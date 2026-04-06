@@ -2,19 +2,19 @@
 
 A media intake tool that sits in front of your *arr stack and does the tedious part for you.
 
-You drop a CSV of stuff you want — books, movies, TV shows, music, audiobooks — and IngestArr figures out where each item needs to go. Movies get handed to Radarr. TV shows go to Sonarr. Music to Lidarr. For books and audiobooks, where the *arr apps are frankly terrible, it searches Prowlarr directly, uses an LLM to pick the right result from a pile of garbage release names, and kicks the download to SABnzbd or qBittorrent.
+You drop a CSV of stuff you want - books, movies, TV shows, music, audiobooks - and IngestArr figures out where each item needs to go. Movies get handed to Radarr. TV shows go to Sonarr. Music to Lidarr. For books and audiobooks, where the *arr apps are frankly terrible, it searches Prowlarr directly, uses an LLM to pick the right result from a pile of garbage release names, and kicks the download to SABnzbd or qBittorrent.
 
 ## Why this exists
 
-I got tired of manually adding things one at a time across five different apps. Especially books — Readarr barely works, and even when it does, it picks the wrong edition half the time. I wanted to hand a list to something smarter than a regex and have it just... deal with it.
+I got tired of manually adding things one at a time across five different apps. Especially books - Readarr barely works, and even when it does, it picks the wrong edition half the time. I wanted to hand a list to something smarter than a regex and have it just... deal with it.
 
 ## How it works
 
 There are two modes, and IngestArr picks the right one automatically based on the media type:
 
-**Hand-off mode** (movies, TV, music) — The *arr apps are good at these. IngestArr uses an LLM to resolve any ambiguity in what you asked for ("Blade Runner" → which one?), then adds it to the right *arr app with monitoring enabled. The *arr app handles searching, downloading, and quality from there.
+**Hand-off mode** (movies, TV, music) - The *arr apps are good at these. IngestArr uses an LLM to resolve any ambiguity in what you asked for ("Blade Runner" → which one?), then adds it to the right *arr app with monitoring enabled. The *arr app handles searching, downloading, and quality from there.
 
-**Direct mode** (books, audiobooks) — No *arr app does these well. IngestArr generates search queries, hits Prowlarr, pre-filters the results by size and format, then sends the shortlist to an LLM for classification. The best match gets pushed to your download client. Uncertain matches go to a review queue instead of being grabbed blindly.
+**Direct mode** (books, audiobooks) - No *arr app does these well. IngestArr generates search queries, hits Prowlarr, pre-filters the results by size and format, then sends the shortlist to an LLM for classification. The best match gets pushed to your download client. Uncertain matches go to a review queue instead of being grabbed blindly.
 
 ## The CSV
 
@@ -28,13 +28,13 @@ music,OK Computer,Radiohead,1997,,prefer FLAC
 audiobook,Project Hail Mary,Andy Weir,2021,,
 ```
 
-`Type` and `Title` are required. Everything else is optional but helps. The `Notes` column is freeform — the LLM reads it and factors it into decisions (resolution preferences, format preferences, specific editions, whatever).
+`Type` and `Title` are required. Everything else is optional but helps. The `Notes` column is freeform - the LLM reads it and factors it into decisions (resolution preferences, format preferences, specific editions, whatever).
 
 ## Setup
 
 1. Copy `.env.example` to `.env` and fill in your API keys
 2. You need Prowlarr and at least one download client (SABnzbd or qBittorrent)
-3. *Arr apps are optional — only configure the ones you use
+3. *Arr apps are optional - only configure the ones you use
 4. An LLM endpoint is required (Ollama locally, or OpenRouter for cloud)
 
 ```bash
@@ -62,13 +62,13 @@ docker exec ingestarr python -m ingestarr status
 # Validate a CSV without actually doing anything
 docker exec ingestarr python -m ingestarr validate mylist.csv
 
-# Dry run — shows what it would do
+# Dry run - shows what it would do
 docker exec ingestarr python -m ingestarr process mylist.csv --dry-run
 ```
 
 ## Requirements
 
-- Docker (Linux host — the file watcher uses inotify, which is Linux-only)
+- Docker (Linux host - the file watcher uses inotify, which is Linux-only)
 - Prowlarr (indexer aggregator)
 - At least one download client (SABnzbd or qBittorrent)
 - An LLM (Ollama on your network, or OpenRouter)

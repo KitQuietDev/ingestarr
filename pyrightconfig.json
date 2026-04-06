@@ -1,0 +1,16 @@
+{
+  "typeCheckingMode": "basic",
+  "include": [
+    "ingestarr"
+  ],
+  "exclude": [
+    "data",
+    ".venv"
+  ],
+  "reportUnknownMemberType": false,
+  "reportUnknownArgumentType": false,
+  "reportUnknownVariableType": false,
+  "reportUnknownParameterType": false,
+  "reportMissingTypeArgument": false,
+  "reportUnusedImport": "warning"
+}

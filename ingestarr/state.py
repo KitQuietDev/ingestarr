@@ -5,7 +5,6 @@ import logging
 import os
 import tempfile
 from datetime import datetime, timezone
-from pathlib import Path
 
 from .config import Config
 from .models import ItemStatus, ProcessMode, ProcessResult, StateEntry
